@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', ['uses' => 'HomeController@getIndex']);
+
+Route::get('login',['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
+Route::post('login',['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
+Route::get('test',function(){
+    echo getenvconf('domain');
 });
