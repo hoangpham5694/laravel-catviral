@@ -1,0 +1,7 @@
+{
+  "name": "bigTests.Club",
+  "short_name": "bigTests.Club",
+  "gcm_sender_id": "409737479938",
+  "display": "standalone",
+  "gcm_user_visible_only": true
+}

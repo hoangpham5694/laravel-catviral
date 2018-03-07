@@ -1,4 +1,5 @@
 <?php
+	//echo "helper";
 	if (! function_exists('is_mobile')) {
 		function is_mobile() {
 			if(isset($_SERVER["HTTP_X_WAP_PROFILE"]))
@@ -32,8 +33,11 @@
 
 		function getenvconf($key, $default = '')
 		{
+			
 			$get = env('CONF_'.$key);
-
+		//	$get = env('DB_DATABASE');
+			// dd(env('DB_DATABASE'));
+			// echo "get env, get".$get; 
 			if(empty($get)){
 				return $default;
 			}
