@@ -1,0 +1,33 @@
+Step 1: Install laravel-horizon
+	$ php composer.phar require laravel/horizon
+	$ php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
+
+Step 2: Edit laravel .env
+	<default>
+	QUEUE_DRIVER=sync
+	<Set to>
+	QUEUE_DRIVER=redis
+
+Step 3: Install supervisor
+	$ yum install supervisor
+	$ systemctl enable supervisord
+
+Step 4: Config supervisor
+	Create file /etc/supervisor/conf.d/horizon.conf
+
+	[program:horizon]
+	command=/usr/bin/php /home/laravel.catviral.net/public_html/artisan horizon
+	process_name=%(program_name)s
+	autostart=true
+	autorestart=unexpected
+	startretries=3
+	stopsignal=QUIT
+	redirect_stderr=true
+	stderr_logfile=/var/log/supervisor/horizon.log
+
+	edit tag [include] in /etc/supervisord.conf
+Step5: Run supervisor
+	$ supervisorctl reload
+	$ supervisorctl reread
+	$ supervisorctl update
+	$ supervisorctl start horizon

@@ -16,11 +16,18 @@ class LoginController extends Controller
                 'password' => $request->txtPassword,
                 'status'=> 'activated'
         ];
-       
-    	if (Auth::guard('staffs')->attempt($login)) {
-            echo "login success";
+     //   echo "login";
+    	if (Auth::guard('admin')->attempt($login)) {
+           
+            return redirect('admin/home');
         }else{
-            redirect()->back();
+            echo "wrong passwprd";
         }
+       
+    }
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->route('getLogin');
     }
 }

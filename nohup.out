@@ -1,0 +1,4 @@
+Horizon started successfully.
+[2018-03-12 15:06:21] Processing: App\Jobs\GetImg
+[2018-03-12 15:06:22] Processed:  App\Jobs\GetImg
+Shutting down...

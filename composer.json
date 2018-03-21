@@ -7,9 +7,23 @@
     "require": {
         "php": ">=7.0.0",
         "browner12/helpers": "^2.1",
+        "doctrine/dbal": "~2.3",
+        "facebook/graph-sdk": "^5.6",
         "fideloper/proxy": "~3.3",
+        "imtigger/laravel-job-status": "^0.1.13",
+        "infyomlabs/adminlte-templates": "5.5.x-dev",
+        "infyomlabs/laravel-generator": "5.5.x-dev",
+        "infyomlabs/swagger-generator": "dev-master",
+        "intervention/image": "^2.4",
+        "jlapp/swaggervel": "dev-master",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/horizon": "^1.2",
+        "laravel/passport": "~4.0",
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.5.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-rackspace": "~1.0",
+        "matriphe/supervisor": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

@@ -167,7 +167,7 @@ Related = {
                 return
             }
         }
-        var a = "/related/quizzes.json?" + Site.helpers.serializeToParams({gender: e,country_group: EnvSettings.country_group});
+        var a = "/api/related/quizzes.json?" + Site.helpers.serializeToParams({gender: e,country_group: EnvSettings.country_group});
         s = new XMLHttpRequest;
         s.onreadystatechange = function() {
             if (4 == s.readyState) {
@@ -182,6 +182,10 @@ Related = {
         }, s.open("GET", a, !0), s.send(null)
     },
     _render_related: function(e) {
+        var template = document.querySelector("#related-template").innerHTML;
+        var customTags = [ '<%', '%>' ];
+    
+        Mustache.parse(template, customTags);
         console.log(EnvSettings.experiment);
         var t = document.querySelector("#related-template").innerHTML,
             e = e.filter(function(e) {
@@ -216,6 +220,7 @@ Related = {
         }
         Site.lazyload = new LazyLoad, Site.lazyload.update({ threshold: 0 });
         //EnvSettings.mobile && Site.ads.taboola_mobile_ads();
+
     }
 };
 
@@ -380,9 +385,10 @@ Site.inits.push( function(){
     delegateEvent("click", ".tlnf", function() {
         if (EnvSettings.quiz.sharer === 'popup'){
             Result.sharers.popup();
-        }
-        if (EnvSettings.quiz.sharer === 'api'){
+        }else if (EnvSettings.quiz.sharer === 'api'){
             Result.sharers.api();
+        }else {
+            Result.sharers.popup();
         }
     });
     
@@ -511,11 +517,12 @@ Result.load = function() {
 function changeLoading(){
     document.getElementById("modal-login").style.display = "none";
     Site.helpers.ui.showLoader();
-    window.location.href =  EnvSettings.quiz.urlLogin + '?share=at';
+    window.location.href =  EnvSettings.quiz.urlLogin + '&share=at';
 }
 function changeLoading2(){
     document.getElementById("modal-login").style.display = "none";
     Site.helpers.ui.showLoader();
+    console.log(EnvSettings.quiz.urlLogin);
     window.location.href =  EnvSettings.quiz.urlLogin;
 }
 Site.inits.push(function() {
